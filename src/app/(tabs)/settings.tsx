@@ -89,7 +89,7 @@ export default function SettingsScreen() {
               <Switch
                 value={twoFactorAuth}
                 onValueChange={setTwoFactorAuth}
-                trackColor={{ false: '#CBD5E1', true: '#3B82F6' }}
+                trackColor={{ false: '#CBD5E1', true: '#3C7FEC' }}
                 thumbColor="#FFFFFF"
               />
             </View>
@@ -106,7 +106,7 @@ export default function SettingsScreen() {
               <Switch
                 value={emailNotification}
                 onValueChange={setEmailNotification}
-                trackColor={{ false: '#CBD5E1', true: '#3B82F6' }}
+                trackColor={{ false: '#CBD5E1', true: '#3C7FEC' }}
                 thumbColor="#FFFFFF"
               />
             </View>
@@ -119,7 +119,7 @@ export default function SettingsScreen() {
               <Switch
                 value={passwordChangeNotification}
                 onValueChange={setPasswordChangeNotification}
-                trackColor={{ false: '#CBD5E1', true: '#3B82F6' }}
+                trackColor={{ false: '#CBD5E1', true: '#3C7FEC' }}
                 thumbColor="#FFFFFF"
               />
             </View>
@@ -132,7 +132,7 @@ export default function SettingsScreen() {
               <Switch
                 value={inAppNotification}
                 onValueChange={setInAppNotification}
-                trackColor={{ false: '#CBD5E1', true: '#3B82F6' }}
+                trackColor={{ false: '#CBD5E1', true: '#3C7FEC' }}
                 thumbColor="#FFFFFF"
               />
             </View>
@@ -254,8 +254,8 @@ const styles = StyleSheet.create({
   },
   settingLabel: {
     fontSize: 14,
-    fontWeight: '500',
-    color: '#334155',
+    fontWeight: '400',
+    color: '#4B5768',
   },
   rowDivider: {
     height: 1,

@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
   Image,
@@ -96,6 +96,8 @@ const SAMPLE_PHOTO_IDS = ['1', '2', '3', '4', '5', '6', '7', '8'];
 export default function OrderDetailScreen() {
   const router = useRouter();
   const safeAreaInsets = useSafeAreaInsets();
+  const params = useLocalSearchParams<{ source?: string }>();
+  const isRequestMode = params.source === 'requests';
 
   // Tab States
   const [mainTab, setMainTab] = useState<'overview' | 'photos'>('overview');
@@ -264,8 +266,8 @@ export default function OrderDetailScreen() {
                   jobStatus === 'Completed'
                     ? styles.badgeCompleted
                     : jobStatus === 'In Progress'
-                    ? styles.badgeInProgress
-                    : styles.badgeOnHold,
+                      ? styles.badgeInProgress
+                      : styles.badgeOnHold,
                 ]}>
                 <Text
                   style={[
@@ -273,8 +275,8 @@ export default function OrderDetailScreen() {
                     jobStatus === 'Completed'
                       ? styles.badgeTextCompleted
                       : jobStatus === 'In Progress'
-                      ? styles.badgeTextInProgress
-                      : styles.badgeTextOnHold,
+                        ? styles.badgeTextInProgress
+                        : styles.badgeTextOnHold,
                   ]}>
                   {jobStatus}
                 </Text>
@@ -514,65 +516,86 @@ export default function OrderDetailScreen() {
           {/* Drag Handle Pill */}
           <View style={styles.dragHandlePill} />
 
-          {/* Label: Job Status */}
-          <Text style={styles.jobStatusTitleLabel}>Job Status</Text>
-
-          {/* Primary Action Row: Mark as Completed + Expand Chevron Button */}
-          <View style={styles.jobStatusMainRow}>
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={() => handleSelectJobStatus('Completed')}
-              style={styles.markCompletedPrimaryButton}>
-              <Text style={styles.markCompletedPrimaryText}>
-                {jobStatus === 'Completed' ? 'Completed' : 'Mark as Completed'}
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={handleToggleJobStatusExpand}
-              style={styles.jobStatusChevronButton}>
-              <Ionicons
-                name={isJobStatusExpanded ? 'chevron-down' : 'chevron-up'}
-                size={20}
-                color="#64748B"
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/* Expanded Options List (Image 2) */}
-          {isJobStatusExpanded && (
-            <View style={styles.expandedStatusButtonsList}>
+          {isRequestMode ? (
+            /* Requests Action Buttons: Reject & Accept (Exact Image Mockup) */
+            <View style={styles.requestDrawerActionRow}>
               <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={() => handleSelectJobStatus('On hold')}
-                style={[
-                  styles.statusOptionButton,
-                  jobStatus === 'On hold' && styles.statusOptionButtonSelected,
-                ]}>
-                <Text style={styles.statusOptionText}>On hold</Text>
+                onPress={() => router.back()}
+                style={styles.drawerRejectButton}>
+                <Text style={styles.drawerRejectButtonText}>Reject</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => handleSelectJobStatus('In Progress')}
-                style={[
-                  styles.statusOptionButton,
-                  jobStatus === 'In Progress' && styles.statusOptionButtonSelected,
-                ]}>
-                <Text style={styles.statusOptionText}>In Progress</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => handleSelectJobStatus('Archive')}
-                style={[
-                  styles.statusOptionButton,
-                  jobStatus === 'Archive' && styles.statusOptionButtonSelected,
-                ]}>
-                <Text style={styles.statusOptionText}>Archive</Text>
+                activeOpacity={0.85}
+                onPress={() => router.back()}
+                style={styles.drawerAcceptButton}>
+                <Text style={styles.drawerAcceptButtonText}>Accept</Text>
               </TouchableOpacity>
             </View>
+          ) : (
+            <>
+              {/* Label: Job Status */}
+              <Text style={styles.jobStatusTitleLabel}>Job Status</Text>
+
+              {/* Primary Action Row: Mark as Completed + Expand Chevron Button */}
+              <View style={styles.jobStatusMainRow}>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => handleSelectJobStatus('Completed')}
+                  style={styles.markCompletedPrimaryButton}>
+                  <Text style={styles.markCompletedPrimaryText}>
+                    {jobStatus === 'Completed' ? 'Completed' : 'Mark as Completed'}
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={handleToggleJobStatusExpand}
+                  style={styles.jobStatusChevronButton}>
+                  <Ionicons
+                    name={isJobStatusExpanded ? 'chevron-down' : 'chevron-up'}
+                    size={20}
+                    color="#64748B"
+                  />
+                </TouchableOpacity>
+              </View>
+
+              {/* Expanded Options List (Image 2) */}
+              {isJobStatusExpanded && (
+                <View style={styles.expandedStatusButtonsList}>
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    onPress={() => handleSelectJobStatus('On hold')}
+                    style={[
+                      styles.statusOptionButton,
+                      jobStatus === 'On hold' && styles.statusOptionButtonSelected,
+                    ]}>
+                    <Text style={styles.statusOptionText}>On hold</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    onPress={() => handleSelectJobStatus('In Progress')}
+                    style={[
+                      styles.statusOptionButton,
+                      jobStatus === 'In Progress' && styles.statusOptionButtonSelected,
+                    ]}>
+                    <Text style={styles.statusOptionText}>In Progress</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    onPress={() => handleSelectJobStatus('Archive')}
+                    style={[
+                      styles.statusOptionButton,
+                      jobStatus === 'Archive' && styles.statusOptionButtonSelected,
+                    ]}>
+                    <Text style={styles.statusOptionText}>Archive</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </>
           )}
         </View>
       )}
@@ -667,7 +690,7 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
     backgroundColor: '#FFFFFF',
-    borderRadius: 12,
+    borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -1236,6 +1259,46 @@ const styles = StyleSheet.create({
     backgroundColor: '#CBD5E1',
     borderRadius: 2,
     marginBottom: 4,
+  },
+  /* Request Drawer Action Buttons (Mockup Match) */
+  requestDrawerActionRow: {
+    flexDirection: 'row',
+    width: '100%',
+    gap: 12,
+    marginTop: 4,
+  },
+  drawerRejectButton: {
+    flex: 1,
+    height: 46,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  drawerRejectButtonText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#475569',
+  },
+  drawerAcceptButton: {
+    flex: 1,
+    height: 46,
+    backgroundColor: '#0BBC58',
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#0BBC58',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 5,
+    elevation: 2,
+  },
+  drawerAcceptButtonText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#FFFFFF',
   },
   drawerDownloadButton: {
     width: '100%',

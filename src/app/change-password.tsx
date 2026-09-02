@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
@@ -136,7 +137,14 @@ export default function ChangePasswordScreen() {
               activeOpacity={0.8}
               onPress={handleSaveChanges}
               style={styles.saveChangesButton}>
-              <Text style={styles.saveChangesText}>Save Changes</Text>
+              <LinearGradient
+                colors={['#5897FF', '#3C7FEC', '#488EFF']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.saveChangesButton}>
+                <Text style={styles.saveChangesText}>Save Changes</Text>
+              </LinearGradient>
+
             </TouchableOpacity>
           </View>
         </View>
@@ -163,7 +171,7 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
     backgroundColor: '#FFFFFF',
-    borderRadius: 12,
+    borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -246,7 +254,7 @@ const styles = StyleSheet.create({
   saveChangesButton: {
     width: '100%',
     height: 48,
-    backgroundColor: '#3B82F6',
+    // backgroundColor: '#3B82F6',
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',

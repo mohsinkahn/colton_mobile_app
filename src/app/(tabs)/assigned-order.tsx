@@ -302,7 +302,12 @@ export default function AssignedOrderScreen() {
                     {/* Clickable Card Header & Details to open /order-detail */}
                     <TouchableOpacity
                       activeOpacity={0.7}
-                      onPress={() => router.push('/order-detail')}>
+                      onPress={() =>
+                        router.push({
+                          pathname: '/order-detail',
+                          params: { source: mainTab },
+                        })
+                      }>
                       {/* Card Header & Badges */}
                       <View style={styles.cardTopRow}>
                         <Text style={styles.orderNumberText}>{item.orderNumber}</Text>
@@ -415,10 +420,16 @@ export default function AssignedOrderScreen() {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                          activeOpacity={0.8}
+                          activeOpacity={0.85}
                           onPress={() => handleAcceptRequest(item.id)}
-                          style={styles.acceptButton}>
-                          <Text style={styles.acceptButtonText}>Accept</Text>
+                          style={styles.acceptButtonTouchWrapper}>
+                          <LinearGradient
+                            colors={['#12A150', '#0BBC58', '#12A150']}
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 0 }}
+                            style={styles.acceptButtonGradient}>
+                            <Text style={styles.acceptButtonText}>Accept</Text>
+                          </LinearGradient>
                         </TouchableOpacity>
                       </View>
                     )}
@@ -790,19 +801,25 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#64748B',
   },
-  acceptButton: {
+  acceptButtonTouchWrapper: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1.5,
-    borderColor: '#22C55E',
     borderRadius: 12,
+    shadowColor: '#12A150',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 5,
+    elevation: 2,
+  },
+  acceptButtonGradient: {
+    width: '100%',
     height: 40,
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
   },
   acceptButtonText: {
     fontSize: 14,
     fontWeight: '700',
-    color: '#16A34A',
+    color: '#FFFFFF',
   },
 });
