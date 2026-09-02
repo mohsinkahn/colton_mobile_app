@@ -511,7 +511,7 @@ const styles = StyleSheet.create({
   },
   barFill: {
     width: 13,
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#5897FF',
     borderRadius: 6,
   },
   xAxisMonthLabel: {
@@ -551,7 +551,7 @@ const styles = StyleSheet.create({
     height: 190,
     borderRadius: 95,
     borderWidth: 16,
-    borderColor: '#3B82F6',
+    borderColor: '#5897FF',
     borderBottomColor: 'transparent',
     borderLeftColor: 'transparent',
     transform: [{ rotate: '-105deg' }],

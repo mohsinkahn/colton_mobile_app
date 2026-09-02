@@ -132,7 +132,7 @@ export default function NotificationsScreen() {
                     <View style={styles.notificationItemRow}>
                       {/* Left Icon Square */}
                       <View style={styles.iconSquare}>
-                        <Ionicons name="mail-outline" size={18} color="#2563EB" />
+                        <Ionicons name="mail-outline" size={18} color="#286CD1" />
                       </View>
 
                       {/* Right Content */}
@@ -184,14 +184,14 @@ const styles = StyleSheet.create({
   },
   greetingText: {
     fontSize: 28,
-    fontWeight: '700',
-    color: '#0F172A',
+    fontWeight: '400',
+    color: '#334155',
     lineHeight: 34,
   },
   subtitleText: {
     fontSize: 24,
     fontWeight: '400',
-    color: '#2563EB',
+    color: '#286AB8',
     lineHeight: 30,
   },
   badgeBox: {
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
   badgeCountText: {
     fontSize: 26,
     fontWeight: '700',
-    color: '#334155',
+    color: '#5B6878',
   },
   /* Group Container & Date Pills */
   groupsContainer: {
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
   senderName: {
     fontSize: 14,
     fontWeight: '700',
-    color: '#2563EB',
+    color: '#286CD1',
   },
   timestampText: {
     fontSize: 12,

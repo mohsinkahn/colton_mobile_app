@@ -164,14 +164,14 @@ const styles = StyleSheet.create({
   },
   greetingText: {
     fontSize: 28,
-    fontWeight: '700',
-    color: '#0F172A',
+    fontWeight: '400',
+    color: '#0B1B34',
     lineHeight: 34,
   },
   subtitleText: {
     fontSize: 24,
     fontWeight: '400',
-    color: '#2563EB',
+    color: '#286AB8',
     lineHeight: 30,
   },
   /* User Profile Card */

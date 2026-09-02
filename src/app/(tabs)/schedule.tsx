@@ -1,5 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useMemo, useState } from 'react';
+
 import {
   Modal,
   Pressable,
@@ -259,10 +261,19 @@ export default function ScheduleScreen() {
                   <View style={styles.slotCardsColumn}>
                     {slot.orders.length > 0 ? (
                       slot.orders.map((order) => (
-                        <TouchableOpacity key={order.id} activeOpacity={0.9} style={styles.orderEventCard}>
+                        // <TouchableOpacity key={order.id} activeOpacity={0.9} style={styles.orderEventCard}>
+                        //   <Text style={styles.orderNumberText}>Order {order.orderNumber}</Text>
+                        //   <Text style={styles.orderTimeText}>{order.time}</Text>
+                        // </TouchableOpacity>
+                        <LinearGradient
+                          key={order.id}
+                          colors={['#5897FF', '#3C7FEC', '#488EFF']}
+                          start={{ x: 0, y: 0 }}
+                          end={{ x: 1, y: 0 }}
+                          style={styles.orderEventCard}>
                           <Text style={styles.orderNumberText}>Order {order.orderNumber}</Text>
                           <Text style={styles.orderTimeText}>{order.time}</Text>
-                        </TouchableOpacity>
+                        </LinearGradient>
                       ))
                     ) : (
                       <View style={styles.emptySlotLine} />
@@ -374,14 +385,14 @@ const styles = StyleSheet.create({
   },
   greetingText: {
     fontSize: 28,
-    fontWeight: '700',
-    color: '#0F172A',
+    fontWeight: '400',
+    color: '#0B1B34',
     lineHeight: 34,
   },
   subtitleText: {
     fontSize: 24,
     fontWeight: '400',
-    color: '#2563EB',
+    color: '#286AB8',
     lineHeight: 30,
   },
   /* Main Segmented Control */
@@ -487,6 +498,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#EFF6FF',
     borderRadius: 10,
   },
+  markCompletedGradient: {
+    width: '100%',
+    height: 42,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   dayNumberText: {
     fontSize: 15,
     fontWeight: '700',
@@ -545,7 +563,7 @@ const styles = StyleSheet.create({
   },
   orderEventCard: {
     width: '100%',
-    backgroundColor: '#3B82F6',
+    // backgroundColor: '#3B82F6',
     borderRadius: 12,
     paddingHorizontal: 14,
     paddingVertical: 10,

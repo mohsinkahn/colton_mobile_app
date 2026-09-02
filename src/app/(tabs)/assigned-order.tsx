@@ -462,14 +462,14 @@ const styles = StyleSheet.create({
   },
   greetingText: {
     fontSize: 28,
-    fontWeight: '700',
-    color: '#0F172A',
+    fontWeight: '400',
+    color: '#0B1B34',
     letterSpacing: -0.5,
   },
   headerTitle: {
     fontSize: 24,
-    fontWeight: '600',
-    color: '#2563EB',
+    fontWeight: '400',
+    color: '#286AB8',
     lineHeight: 30,
   },
   orderCountBadge: {
@@ -488,7 +488,7 @@ const styles = StyleSheet.create({
   orderCountText: {
     fontSize: 26,
     fontWeight: '700',
-    color: '#334155',
+    color: '#5B6878',
   },
   /* Main Tabs: Ongoing / Requests */
   mainTabContainer: {
