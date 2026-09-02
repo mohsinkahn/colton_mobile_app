@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
@@ -378,10 +379,16 @@ export default function AssignedOrderScreen() {
                     {mainTab === 'ongoing' && item.status !== 'completed' && (
                       <View style={styles.cardBottomRow}>
                         <TouchableOpacity
-                          activeOpacity={0.8}
+                          activeOpacity={0.85}
                           onPress={() => handleMarkCompleted(item.id)}
-                          style={styles.markCompletedButton}>
-                          <Text style={styles.markCompletedText}>Mark as Completed</Text>
+                          style={styles.markCompletedTouchWrapper}>
+                          <LinearGradient
+                            colors={['#5897FF', '#3C7FEC', '#488EFF']}
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 0 }}
+                            style={styles.markCompletedGradient}>
+                            <Text style={styles.markCompletedText}>Mark as Completed</Text>
+                          </LinearGradient>
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -731,18 +738,21 @@ const styles = StyleSheet.create({
     gap: 8,
     marginTop: 4,
   },
-  markCompletedButton: {
+  markCompletedTouchWrapper: {
     flex: 1,
-    backgroundColor: '#3B82F6',
     borderRadius: 12,
+    shadowColor: '#3C7FEC',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+    elevation: 3,
+  },
+  markCompletedGradient: {
+    width: '100%',
     height: 42,
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#3B82F6',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 2,
   },
   markCompletedText: {
     fontSize: 14,
