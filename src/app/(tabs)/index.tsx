@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
@@ -99,12 +100,16 @@ export default function HomeScreen() {
           </View>
 
           {/* Hero Banner Card */}
-          <View style={styles.heroBannerCard}>
+          <LinearGradient
+            colors={['#5897FF', '#3C7FEC']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.heroBannerCard}>
             <Text style={styles.heroGreetingText}>Hello, Colton!</Text>
             <Text style={styles.heroSubtitleText}>
               Track projects, manage tasks, and stay productive.
             </Text>
-          </View>
+          </LinearGradient>
 
           {/* 2x2 Grid of Metrics Cards */}
           <View style={styles.metricCardsGrid}>
@@ -351,14 +356,13 @@ const styles = StyleSheet.create({
   },
   /* Hero Banner Card */
   heroBannerCard: {
-    backgroundColor: '#3B82F6',
     borderRadius: 20,
     paddingHorizontal: 20,
     paddingVertical: 18,
     gap: 6,
-    shadowColor: '#3B82F6',
+    shadowColor: '#3C7FEC',
     shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.28,
     shadowRadius: 12,
     elevation: 5,
   },
