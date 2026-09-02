@@ -7,3 +7,19 @@
   --font-rounded: 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif;
   --font-serif: Georgia, 'Times New Roman', serif;
 }
+
+/* Hide Expo Dev Tools floating button and bottom drawer overlay */
+#expo-dev-menu-trigger,
+#expo-dev-tools,
+[data-expo-dev-menu],
+div[class*="expo-dev"],
+div[class*="expo-tools"],
+div[class*="DevTools"],
+div[class*="dev-menu"],
+button[aria-label*="Dev menu"],
+button[aria-label*="Expo"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
