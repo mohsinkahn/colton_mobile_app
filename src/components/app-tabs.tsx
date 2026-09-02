@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Tabs } from 'expo-router';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -60,9 +61,19 @@ function CustomGlassTabBar({ state, descriptors, navigation }: any) {
               testID={options.tabBarTestID}
               onPress={onPress}
               style={styles.tabItem}>
-              <View style={[styles.iconWrapper, isFocused && styles.activeIconWrapper]}>
-                {getIcon(route.name, isFocused)}
-              </View>
+              {isFocused ? (
+                <LinearGradient
+                  colors={['#5897FF', '#3C7FEC', '#488EFF']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={styles.activeIconGradient}>
+                  {getIcon(route.name, isFocused)}
+                </LinearGradient>
+              ) : (
+                <View style={styles.iconWrapper}>
+                  {getIcon(route.name, isFocused)}
+                </View>
+              )}
             </Pressable>
           );
         })}
@@ -125,11 +136,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  activeIconWrapper: {
-    backgroundColor: '#3B82F6',
+  activeIconGradient: {
+    width: 44,
+    height: 44,
     borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
     overflow: 'hidden',
-    shadowColor: '#3B82F6',
+    shadowColor: '#3C7FEC',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.35,
     shadowRadius: 8,
